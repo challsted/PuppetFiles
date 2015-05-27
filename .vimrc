@@ -119,15 +119,18 @@ nnoremap <Leader>p :set invpaste paste?<CR>
 " Plugin Stuff {{{ 
 " The syntax is 'Plug' single quote name of author/vim-plugin single quote. So
 " for example 'bling/vim-airline' is https://github.com/bling/vim-airline
-call plug#begin('~/plugins') " Starts using vim-plug https://github.com/junegunn/vim-plug
-Plug 'bling/vim-airline' { 'dir': '~/plugins' } " This is a bar that shows current mode as well as ton of useful info
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle', 'dir': '~/plugins'  } " Tree file navigator
-Plug 'tomasr/molokai' { 'dir': '~/plugins' } " Color scheme 'Molokai' for vim, since solarized is so touchy....
-Plug 'godlygeek/csapprox' { 'dir': '~/plugins' } " Makes GVIM Color Schemes work in Terminal Vim
-Plug 'scrooloose/syntastic' { 'dir': '~/plugins' } " Automatic Syntax Checking
-Plug 'puppetlabs/puppet-syntax-vim', { 'for': 'puppet', 'dir': '~/plugins' } "Puppet Syntax Highlighting
-Plug 'rodjek/puppet-lint', { 'for': 'puppet', 'dir': '~/plugins' } "Puppet Linter - experimental if it will install this way or not
-call plug#end()     " Stops using vim-plug
+call plug#begin('~/.vim/plugins')   " Starts using vim-plug https://github.com/junegunn/vim-plug
+Plug 'bling/vim-airline'            " This is a bar that shows current mode as well as ton of useful info
+Plug 'tomasr/molokai'               " Color scheme 'Molokai' for vim, since solarized is so touchy....
+Plug 'godlygeek/csapprox'           " Makes GVIM Color Schemes work in Terminal Vim
+Plug 'godlygeek/tabular'            " Makes alligning arbutary text easy
+Plug 'tpope/vim-fugitive'           " Integrate VIM with GIT
+Plug 'tpope/vim-surround'           " Helps with Surrounding code and test with other code and text
+Plug 'scrooloose/syntastic'         " Automatic Syntax Checking
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }     " Tree file navigator
+Plug 'puppetlabs/puppet-syntax-vim', { 'for': 'puppet' }   " Puppet Syntax Highlighting
+Plug 'rodjek/vim-puppet', { 'for' : 'puppet' }
+call plug#end()                     " Stops using vim-plug
 " Additional Stuff for Plugins {{{
 " Sets the Theme for Airline to "luna" find others here:
 " https://github.com/blint/vim-airline/wiki/Screenshots 
@@ -154,12 +157,17 @@ let g:airline_powerline_fonts = 1
 let g:syntastic_check_on_open = 1 " Check on file open
 let g:syntastic_check_on_wq = 0 " Dont check on :wq
 let g:syntastic_enable_signs = 1 " Enable symbols listed below 
+let g:syntastic_enable_signs = 1
 let g:syntastic_error_symbol = "X"
 let g:syntastic_style_error_symbol = ">"
 let g:syntastic_warning_symbol = "!"
 let g:syntastic_style_warning_symbol = ">"
-" Puppet {{{
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
+" Puppet {{{
+let g:syntastic_puppet_checkers = ["puppet"]
 " }}}
 " }}}
 " }}}
